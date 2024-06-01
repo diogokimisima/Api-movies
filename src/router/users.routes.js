@@ -1,20 +1,13 @@
-const { Router } = require("express");
-const UsersController = require("../controllers/UsersController")
+const { Router } = require('express')
 
-const userRoutes = Router();
+const UsersController = require('../controllers/UsersController')
 
-// function myMiddleware(request, response, next) {
+const usersRoutes = Router()
 
-//     if(!request.body.isAdmin){
-//         return response.json({ message: "user unauthorized" }); 
-//     }
+const usersController = new UsersController()
 
-//     next();
-// }
+usersRoutes.post('/', usersController.create)
+usersRoutes.put('/:id', usersController.update)
 
-const usersController = new UsersController();
 
-// userRoutes.use(myMiddleware)
-userRoutes.post('/', usersController.create)
-
-module.exports = userRoutes;
+module.exports = usersRoutes
